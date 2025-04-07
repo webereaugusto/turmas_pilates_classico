@@ -1,0 +1,258 @@
+.turma-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.turma-item h4 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.turma-item p {
+    margin: 10px 0;
+}
+
+.turma-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.turma-item input[type="text"],
+.turma-item input[type="number"],
+.turma-item select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.turma-item button.remove-turma {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.turma-item button.remove-turma:hover {
+    background: #c82333;
+}
+
+.add-turma-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.add-turma-button:hover {
+    background: #218838;
+}
+
+/* Estilo específico para turmas de final de semana */
+#turmas_pilates_meta_box .turma-item {
+    border-left: 4px solid #007bff;
+}
+
+/* Estilo específico para turmas durante a semana */
+#turmas_pilates_meio_semana_meta_box .turma-item {
+    border-left: 4px solid #fd7e14;
+}
+
+#add-turma, #add-turma:hover {
+    background: #007bff;
+}
+
+#add-turma-meio-semana, #add-turma-meio-semana:hover {
+    background: #fd7e14;
+}
+
+.quantidade-vagas-container {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 3px solid #ffc107;
+    margin-top: 5px;
+    border-radius: 4px;
+}
+
+.location-contact-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.location-contact-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.location-contact-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.location-contact-section textarea {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Estilos para a seção de instruções */
+.turmas-instructions {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007cba;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.turmas-instructions h3 {
+    margin-top: 0;
+    color: #23282d;
+    font-size: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.turmas-instructions h4 {
+    color: #23282d;
+    font-size: 14px;
+    margin: 15px 0 10px;
+}
+
+.instructions-section {
+    margin-bottom: 20px;
+}
+
+.instructions-section:last-child {
+    margin-bottom: 0;
+}
+
+.instructions-section ol,
+.instructions-section ul {
+    margin: 10px 0 10px 20px;
+    padding: 0;
+}
+
+.instructions-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.shortcode-highlight {
+    display: inline-block;
+    background-color: #f0f0f1;
+    font-family: Consolas, Monaco, monospace;
+    padding: 5px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #3c434a;
+    font-weight: bold;
+}
+
+/* Estilos para campos de data */
+.date-inputs-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.date-separator {
+    margin: 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.turma-item .date-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 160px;
+}
+
+.turma-item .date-input-container input {
+    width: 100%;
+    padding-right: 30px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.turma-item .date-icon {
+    position: absolute;
+    right: 10px;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilos para UI datepicker */
+.ui-datepicker {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    z-index: 100 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    padding: 8px 0;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left: 5px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    right: 5px;
+}
+
+.ui-datepicker .ui-datepicker-calendar td a {
+    text-align: center;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.ui-datepicker .ui-datepicker-calendar td a.ui-state-highlight {
+    background-color: #007cba;
+    color: white;
+} 
