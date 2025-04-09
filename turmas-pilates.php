@@ -323,29 +323,20 @@ function turmas_pilates_meta_box_callback($post) {
                 <input type="text" name="turmas[<?php echo $index; ?>][numero]" value="<?php echo esc_attr($turma['numero']); ?>">
             </p>
             <p>
-                <label>Datas do Módulo I:</label>
+                <label>Datas do Módulo:</label>
                 <div class="date-inputs-row">
                     <div class="date-input-container">
-                        <input type="text" name="turmas[<?php echo $index; ?>][modulo1_data1]" value="<?php echo isset($turma['modulo1_data1']) ? esc_attr($turma['modulo1_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
+                        <input type="text" name="turmas[<?php echo $index; ?>][modulo_data1]" value="<?php echo isset($turma['modulo_data1']) ? esc_attr($turma['modulo_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                     <span class="date-separator">e</span>
                     <div class="date-input-container">
-                        <input type="text" name="turmas[<?php echo $index; ?>][modulo1_data2]" value="<?php echo isset($turma['modulo1_data2']) ? esc_attr($turma['modulo1_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
-                        <span class="date-icon dashicons dashicons-calendar-alt"></span>
-                    </div>
-                </div>
-            </p>
-            <p>
-                <label>Datas do Módulo II:</label>
-                <div class="date-inputs-row">
-                    <div class="date-input-container">
-                        <input type="text" name="turmas[<?php echo $index; ?>][modulo2_data1]" value="<?php echo isset($turma['modulo2_data1']) ? esc_attr($turma['modulo2_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
+                        <input type="text" name="turmas[<?php echo $index; ?>][modulo_data2]" value="<?php echo isset($turma['modulo_data2']) ? esc_attr($turma['modulo_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                     <span class="date-separator">e</span>
                     <div class="date-input-container">
-                        <input type="text" name="turmas[<?php echo $index; ?>][modulo2_data2]" value="<?php echo isset($turma['modulo2_data2']) ? esc_attr($turma['modulo2_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
+                        <input type="text" name="turmas[<?php echo $index; ?>][modulo_data3]" value="<?php echo isset($turma['modulo_data3']) ? esc_attr($turma['modulo_data3']) : ''; ?>" class="single-date-field" placeholder="Terceira data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                 </div>
@@ -389,29 +380,20 @@ function turmas_pilates_meta_box_callback($post) {
                         <input type="text" name="turmas[${index}][numero]">
                     </p>
                     <p>
-                        <label>Datas do Módulo I:</label>
+                        <label>Datas do Módulo:</label>
                         <div class="date-inputs-row">
                             <div class="date-input-container">
-                                <input type="text" name="turmas[${index}][modulo1_data1]" class="single-date-field" placeholder="Primeira data" readonly>
+                                <input type="text" name="turmas[${index}][modulo_data1]" class="single-date-field" placeholder="Primeira data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                             <span class="date-separator">e</span>
                             <div class="date-input-container">
-                                <input type="text" name="turmas[${index}][modulo1_data2]" class="single-date-field" placeholder="Segunda data" readonly>
-                                <span class="date-icon dashicons dashicons-calendar-alt"></span>
-                            </div>
-                        </div>
-                    </p>
-                    <p>
-                        <label>Datas do Módulo II:</label>
-                        <div class="date-inputs-row">
-                            <div class="date-input-container">
-                                <input type="text" name="turmas[${index}][modulo2_data1]" class="single-date-field" placeholder="Primeira data" readonly>
+                                <input type="text" name="turmas[${index}][modulo_data2]" class="single-date-field" placeholder="Segunda data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                             <span class="date-separator">e</span>
                             <div class="date-input-container">
-                                <input type="text" name="turmas[${index}][modulo2_data2]" class="single-date-field" placeholder="Segunda data" readonly>
+                                <input type="text" name="turmas[${index}][modulo_data3]" class="single-date-field" placeholder="Terceira data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                         </div>
@@ -484,29 +466,20 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
                 <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][numero]" value="<?php echo esc_attr($turma['numero']); ?>">
             </p>
             <p>
-                <label>Datas do Módulo I:</label>
+                <label>Datas do Módulo:</label>
                 <div class="date-inputs-row">
                     <div class="date-input-container">
-                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo1_data1]" value="<?php echo isset($turma['modulo1_data1']) ? esc_attr($turma['modulo1_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
+                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo_data1]" value="<?php echo isset($turma['modulo_data1']) ? esc_attr($turma['modulo_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                     <span class="date-separator">e</span>
                     <div class="date-input-container">
-                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo1_data2]" value="<?php echo isset($turma['modulo1_data2']) ? esc_attr($turma['modulo1_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
-                        <span class="date-icon dashicons dashicons-calendar-alt"></span>
-                    </div>
-                </div>
-            </p>
-            <p>
-                <label>Datas do Módulo II:</label>
-                <div class="date-inputs-row">
-                    <div class="date-input-container">
-                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo2_data1]" value="<?php echo isset($turma['modulo2_data1']) ? esc_attr($turma['modulo2_data1']) : ''; ?>" class="single-date-field" placeholder="Primeira data" readonly>
+                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo_data2]" value="<?php echo isset($turma['modulo_data2']) ? esc_attr($turma['modulo_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                     <span class="date-separator">e</span>
                     <div class="date-input-container">
-                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo2_data2]" value="<?php echo isset($turma['modulo2_data2']) ? esc_attr($turma['modulo2_data2']) : ''; ?>" class="single-date-field" placeholder="Segunda data" readonly>
+                        <input type="text" name="turmas_meio_semana[<?php echo $index; ?>][modulo_data3]" value="<?php echo isset($turma['modulo_data3']) ? esc_attr($turma['modulo_data3']) : ''; ?>" class="single-date-field" placeholder="Terceira data" readonly>
                         <span class="date-icon dashicons dashicons-calendar-alt"></span>
                     </div>
                 </div>
@@ -550,29 +523,20 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
                         <input type="text" name="turmas_meio_semana[${index}][numero]">
                     </p>
                     <p>
-                        <label>Datas do Módulo I:</label>
+                        <label>Datas do Módulo:</label>
                         <div class="date-inputs-row">
                             <div class="date-input-container">
-                                <input type="text" name="turmas_meio_semana[${index}][modulo1_data1]" class="single-date-field" placeholder="Primeira data" readonly>
+                                <input type="text" name="turmas_meio_semana[${index}][modulo_data1]" class="single-date-field" placeholder="Primeira data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                             <span class="date-separator">e</span>
                             <div class="date-input-container">
-                                <input type="text" name="turmas_meio_semana[${index}][modulo1_data2]" class="single-date-field" placeholder="Segunda data" readonly>
-                                <span class="date-icon dashicons dashicons-calendar-alt"></span>
-                            </div>
-                        </div>
-                    </p>
-                    <p>
-                        <label>Datas do Módulo II:</label>
-                        <div class="date-inputs-row">
-                            <div class="date-input-container">
-                                <input type="text" name="turmas_meio_semana[${index}][modulo2_data1]" class="single-date-field" placeholder="Primeira data" readonly>
+                                <input type="text" name="turmas_meio_semana[${index}][modulo_data2]" class="single-date-field" placeholder="Segunda data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                             <span class="date-separator">e</span>
                             <div class="date-input-container">
-                                <input type="text" name="turmas_meio_semana[${index}][modulo2_data2]" class="single-date-field" placeholder="Segunda data" readonly>
+                                <input type="text" name="turmas_meio_semana[${index}][modulo_data3]" class="single-date-field" placeholder="Terceira data" readonly>
                                 <span class="date-icon dashicons dashicons-calendar-alt"></span>
                             </div>
                         </div>
@@ -649,10 +613,9 @@ function turmas_pilates_save_meta_box($post_id) {
                 
                 $turmas[$index] = array(
                     'numero' => isset($turma['numero']) ? sanitize_text_field($turma['numero']) : '',
-                    'modulo1_data1' => isset($turma['modulo1_data1']) ? sanitize_text_field($turma['modulo1_data1']) : '',
-                    'modulo1_data2' => isset($turma['modulo1_data2']) ? sanitize_text_field($turma['modulo1_data2']) : '',
-                    'modulo2_data1' => isset($turma['modulo2_data1']) ? sanitize_text_field($turma['modulo2_data1']) : '',
-                    'modulo2_data2' => isset($turma['modulo2_data2']) ? sanitize_text_field($turma['modulo2_data2']) : '',
+                    'modulo_data1' => isset($turma['modulo_data1']) ? sanitize_text_field($turma['modulo_data1']) : '',
+                    'modulo_data2' => isset($turma['modulo_data2']) ? sanitize_text_field($turma['modulo_data2']) : '',
+                    'modulo_data3' => isset($turma['modulo_data3']) ? sanitize_text_field($turma['modulo_data3']) : '',
                     'status' => isset($turma['status']) ? sanitize_text_field($turma['status']) : 'abertas',
                     'qtd_vagas' => $qtd_vagas
                 );
@@ -684,10 +647,9 @@ function turmas_pilates_save_meta_box($post_id) {
                 
                 $turmas_meio_semana[$index] = array(
                     'numero' => isset($turma['numero']) ? sanitize_text_field($turma['numero']) : '',
-                    'modulo1_data1' => isset($turma['modulo1_data1']) ? sanitize_text_field($turma['modulo1_data1']) : '',
-                    'modulo1_data2' => isset($turma['modulo1_data2']) ? sanitize_text_field($turma['modulo1_data2']) : '',
-                    'modulo2_data1' => isset($turma['modulo2_data1']) ? sanitize_text_field($turma['modulo2_data1']) : '',
-                    'modulo2_data2' => isset($turma['modulo2_data2']) ? sanitize_text_field($turma['modulo2_data2']) : '',
+                    'modulo_data1' => isset($turma['modulo_data1']) ? sanitize_text_field($turma['modulo_data1']) : '',
+                    'modulo_data2' => isset($turma['modulo_data2']) ? sanitize_text_field($turma['modulo_data2']) : '',
+                    'modulo_data3' => isset($turma['modulo_data3']) ? sanitize_text_field($turma['modulo_data3']) : '',
                     'status' => isset($turma['status']) ? sanitize_text_field($turma['status']) : 'abertas',
                     'qtd_vagas' => $qtd_vagas
                 );

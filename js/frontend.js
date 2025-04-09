@@ -95,33 +95,19 @@ jQuery(document).ready(function($) {
                                     }
                                     
                                     // Formatar datas dos módulos
-                                    var modulo1Text = '';
-                                    if (turma.modulo1_data1 || turma.modulo1_data2) {
-                                        if (turma.modulo1_data1 && turma.modulo1_data2) {
-                                            modulo1Text = `${turma.modulo1_data1} e ${turma.modulo1_data2}`;
-                                        } else if (turma.modulo1_data1) {
-                                            modulo1Text = turma.modulo1_data1;
-                                        } else if (turma.modulo1_data2) {
-                                            modulo1Text = turma.modulo1_data2;
-                                        }
-                                    }
-                                    
-                                    var modulo2Text = '';
-                                    if (turma.modulo2_data1 || turma.modulo2_data2) {
-                                        if (turma.modulo2_data1 && turma.modulo2_data2) {
-                                            modulo2Text = `${turma.modulo2_data1} e ${turma.modulo2_data2}`;
-                                        } else if (turma.modulo2_data1) {
-                                            modulo2Text = turma.modulo2_data1;
-                                        } else if (turma.modulo2_data2) {
-                                            modulo2Text = turma.modulo2_data2;
-                                        }
+                                    var moduloText = '';
+                                    if (turma.modulo_data1 || turma.modulo_data2 || turma.modulo_data3) {
+                                        var datas = [];
+                                        if (turma.modulo_data1) datas.push(turma.modulo_data1);
+                                        if (turma.modulo_data2) datas.push(turma.modulo_data2);
+                                        if (turma.modulo_data3) datas.push(turma.modulo_data3);
+                                        moduloText = datas.join(' e ');
                                     }
                                     
                                     var html = `
                                         <div class="turma-card turma-fds">
                                             <h3>Turma ${turma.numero}</h3>
-                                            <p><strong>Módulo I:</strong> ${modulo1Text}</p>
-                                            <p><strong>Módulo II:</strong> ${modulo2Text}</p>
+                                            <p><strong>Datas desta turma:</strong> ${moduloText}</p>
                                             ${qtdVagas}
                                             <span class="status-badge ${statusClass}">${statusText}</span>
                                         </div>
@@ -138,7 +124,7 @@ jQuery(document).ready(function($) {
                                     
                                     var infoHtml = `
                                         <div class="turma-location-contact">
-                                            <h3>Informações Adicionais</h3>
+                                            <h3>Informações sobre o local do curso</h3>
                                             <div>${infoText}</div>
                                         </div>
                                     `;
@@ -168,33 +154,19 @@ jQuery(document).ready(function($) {
                                     }
                                     
                                     // Formatar datas dos módulos
-                                    var modulo1Text = '';
-                                    if (turma.modulo1_data1 || turma.modulo1_data2) {
-                                        if (turma.modulo1_data1 && turma.modulo1_data2) {
-                                            modulo1Text = `${turma.modulo1_data1} e ${turma.modulo1_data2}`;
-                                        } else if (turma.modulo1_data1) {
-                                            modulo1Text = turma.modulo1_data1;
-                                        } else if (turma.modulo1_data2) {
-                                            modulo1Text = turma.modulo1_data2;
-                                        }
-                                    }
-                                    
-                                    var modulo2Text = '';
-                                    if (turma.modulo2_data1 || turma.modulo2_data2) {
-                                        if (turma.modulo2_data1 && turma.modulo2_data2) {
-                                            modulo2Text = `${turma.modulo2_data1} e ${turma.modulo2_data2}`;
-                                        } else if (turma.modulo2_data1) {
-                                            modulo2Text = turma.modulo2_data1;
-                                        } else if (turma.modulo2_data2) {
-                                            modulo2Text = turma.modulo2_data2;
-                                        }
+                                    var moduloText = '';
+                                    if (turma.modulo_data1 || turma.modulo_data2 || turma.modulo_data3) {
+                                        var datas = [];
+                                        if (turma.modulo_data1) datas.push(turma.modulo_data1);
+                                        if (turma.modulo_data2) datas.push(turma.modulo_data2);
+                                        if (turma.modulo_data3) datas.push(turma.modulo_data3);
+                                        moduloText = datas.join(' e ');
                                     }
                                 
                                 var html = `
                                         <div class="turma-card turma-semana">
                                         <h3>Turma ${turma.numero}</h3>
-                                            <p><strong>Módulo I:</strong> ${modulo1Text}</p>
-                                            <p><strong>Módulo II:</strong> ${modulo2Text}</p>
+                                            <p><strong>Datas desta turma:</strong> ${moduloText}</p>
                                             ${qtdVagas}
                                         <span class="status-badge ${statusClass}">${statusText}</span>
                                     </div>
@@ -211,7 +183,7 @@ jQuery(document).ready(function($) {
                                     
                                     var infoHtml = `
                                         <div class="turma-location-contact">
-                                            <h3>Informações Adicionais</h3>
+                                            <h3>Informações sobre o local do curso</h3>
                                             <div>${infoText}</div>
                                         </div>
                                     `;
