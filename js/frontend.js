@@ -75,9 +75,13 @@ jQuery(document).ready(function($) {
                                        (turmas_meio_semana && turmas_meio_semana.length > 0);
                         
                         if (temTurmas) {
+                            // Obter o nome da cidade e estado
+                            var cidadeNome = $('#turmas-cidade option:selected').text();
+                            var estadoNome = $('#turmas-estado option:selected').text();
+                            
                             // Exibir turmas de final de semana
                             if (turmas_final_semana.length > 0) {
-                                $container.append('<h2 class="turmas-categoria">Turmas de Final de Semana</h2>');
+                                $container.append(`<h2 class="turmas-categoria">Próximas Turmas em ${cidadeNome} - ${estadoNome}</h2>`);
                                 var $turmasFdsContainer = $('<div class="turmas-categoria-container"></div>');
                                 
                                 $.each(turmas_final_semana, function(index, turma) {
@@ -136,7 +140,7 @@ jQuery(document).ready(function($) {
                             
                             // Exibir turmas durante a semana
                             if (turmas_meio_semana.length > 0) {
-                                $container.append('<h2 class="turmas-categoria">Turmas Durante a Semana</h2>');
+                                $container.append(`<h2 class="turmas-categoria">Turmas Durante a Semana em ${cidadeNome} - ${estadoNome}</h2>`);
                                 var $turmasSemanaContainer = $('<div class="turmas-categoria-container"></div>');
                                 
                                 $.each(turmas_meio_semana, function(index, turma) {
