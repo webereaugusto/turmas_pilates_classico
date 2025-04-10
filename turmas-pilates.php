@@ -369,12 +369,12 @@ function turmas_pilates_meta_box_callback($post) {
                 'info_fds',
                 array(
                     'textarea_name' => 'info_fds',
-                    'textarea_rows' => 6,
-                    'media_buttons' => false,
-                    'teeny' => true,
+                    'textarea_rows' => 8,
+                    'media_buttons' => true,
+                    'teeny' => false,
                     'quicktags' => true,
                     'tinymce' => array(
-                        'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink',
+                        'toolbar1' => 'formatselect,bold,italic,underline,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
                         'toolbar2' => ''
                     )
                 )
@@ -528,12 +528,12 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
                 'info_meio_semana',
                 array(
                     'textarea_name' => 'info_meio_semana',
-                    'textarea_rows' => 6,
-                    'media_buttons' => false,
-                    'teeny' => true,
+                    'textarea_rows' => 8,
+                    'media_buttons' => true,
+                    'teeny' => false,
                     'quicktags' => true,
                     'tinymce' => array(
-                        'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink',
+                        'toolbar1' => 'formatselect,bold,italic,underline,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
                         'toolbar2' => ''
                     )
                 )
