@@ -363,8 +363,24 @@ function turmas_pilates_meta_box_callback($post) {
         <h4>Informações de Local e Contato</h4>
         <p>
             <label>Informações (Final de Semana):</label>
-            <textarea name="info_fds" rows="6" style="width: 100%; max-width: 100%;" class="regular-text"><?php echo esc_textarea($info_fds); ?></textarea>
-            <span class="description">Insira informações sobre local e contato. Quebras de linha serão preservadas.</span>
+            <?php 
+            wp_editor(
+                $info_fds,
+                'info_fds',
+                array(
+                    'textarea_name' => 'info_fds',
+                    'textarea_rows' => 6,
+                    'media_buttons' => false,
+                    'teeny' => true,
+                    'quicktags' => true,
+                    'tinymce' => array(
+                        'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink',
+                        'toolbar2' => ''
+                    )
+                )
+            );
+            ?>
+            <span class="description">Insira informações sobre local e contato. Use as ferramentas de formatação para melhor organização do texto.</span>
         </p>
     </div>
     
@@ -506,8 +522,24 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
         <h4>Informações de Local e Contato</h4>
         <p>
             <label>Informações (Durante a Semana):</label>
-            <textarea name="info_meio_semana" rows="6" style="width: 100%; max-width: 100%;" class="regular-text"><?php echo esc_textarea($info_meio_semana); ?></textarea>
-            <span class="description">Insira informações sobre local e contato. Quebras de linha serão preservadas.</span>
+            <?php 
+            wp_editor(
+                $info_meio_semana,
+                'info_meio_semana',
+                array(
+                    'textarea_name' => 'info_meio_semana',
+                    'textarea_rows' => 6,
+                    'media_buttons' => false,
+                    'teeny' => true,
+                    'quicktags' => true,
+                    'tinymce' => array(
+                        'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink',
+                        'toolbar2' => ''
+                    )
+                )
+            );
+            ?>
+            <span class="description">Insira informações sobre local e contato. Use as ferramentas de formatação para melhor organização do texto.</span>
         </p>
     </div>
     
@@ -626,7 +658,7 @@ function turmas_pilates_save_meta_box($post_id) {
         
         // Salvar informações adicionais
         if (isset($_POST['info_fds'])) {
-            update_post_meta($post_id, '_turmas_pilates_info_fds', sanitize_textarea_field($_POST['info_fds']));
+            update_post_meta($post_id, '_turmas_pilates_info_fds', wp_kses_post($_POST['info_fds']));
         }
     }
     
@@ -660,7 +692,7 @@ function turmas_pilates_save_meta_box($post_id) {
         
         // Salvar informações adicionais
         if (isset($_POST['info_meio_semana'])) {
-            update_post_meta($post_id, '_turmas_pilates_info_meio_semana', sanitize_textarea_field($_POST['info_meio_semana']));
+            update_post_meta($post_id, '_turmas_pilates_info_meio_semana', wp_kses_post($_POST['info_meio_semana']));
         }
     }
 }
