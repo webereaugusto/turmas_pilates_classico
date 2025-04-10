@@ -70,7 +70,12 @@ add_shortcode('turmas_pilates', 'turmas_pilates_shortcode');
 
 // Funções AJAX
 function turmas_pilates_get_cidades() {
-    check_ajax_referer('turmas_pilates_nonce', 'nonce');
+    // Verificar nonce manualmente
+    $nonce = isset($_POST['nonce']) ? $_POST['nonce'] : '';
+    if (!wp_verify_nonce($nonce, 'turmas_pilates_nonce')) {
+        wp_send_json_error('Nonce inválido');
+        return;
+    }
     
     $estado_id = intval($_POST['estado_id']);
     $cidades = get_posts(array(
@@ -96,7 +101,12 @@ add_action('wp_ajax_turmas_pilates_get_cidades', 'turmas_pilates_get_cidades');
 add_action('wp_ajax_nopriv_turmas_pilates_get_cidades', 'turmas_pilates_get_cidades');
 
 function turmas_pilates_get_turmas() {
-    check_ajax_referer('turmas_pilates_nonce', 'nonce');
+    // Verificar nonce manualmente
+    $nonce = isset($_POST['nonce']) ? $_POST['nonce'] : '';
+    if (!wp_verify_nonce($nonce, 'turmas_pilates_nonce')) {
+        wp_send_json_error('Nonce inválido');
+        return;
+    }
     
     $cidade_id = intval($_POST['cidade_id']);
     
