@@ -727,18 +727,18 @@ function turmas_pilates_enqueue_scripts() {
             // Script personalizado para inicializar os datepickers
             wp_enqueue_script('turmas-pilates-datepicker', TURMAS_PILATES_PLUGIN_URL . 'js/datepicker.js', array('jquery', 'jquery-ui-datepicker'), TURMAS_PILATES_VERSION, true);
         }
-    } else {
-        // Frontend scripts
-        wp_enqueue_style('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'css/frontend.css');
-        wp_enqueue_script('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'js/frontend.js', array('jquery'), TURMAS_PILATES_VERSION, true);
-        
-        // Localizar o script com nonce renovado
-        wp_localize_script('turmas-pilates-frontend', 'turmasPilates', array(
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('turmas_pilates_nonce'),
-            'version' => TURMAS_PILATES_VERSION
-        ));
     }
 }
 add_action('admin_enqueue_scripts', 'turmas_pilates_enqueue_scripts');
-add_action('wp_enqueue_scripts', 'turmas_pilates_enqueue_scripts'); 
+
+// Adicionar função para renovar nonce via AJAX
+function turmas_pilates_refresh_nonce() {
+    // Gerar um novo nonce
+    $new_nonce = wp_create_nonce('turmas_pilates_nonce');
+    error_log('Novo nonce gerado: ' . substr($new_nonce, 0, 3) . '...');
+    
+    // Enviar para o cliente
+    wp_send_json_success($new_nonce);
+}
+add_action('wp_ajax_turmas_pilates_refresh_nonce', 'turmas_pilates_refresh_nonce');
+add_action('wp_ajax_nopriv_turmas_pilates_refresh_nonce', 'turmas_pilates_refresh_nonce'); 

@@ -2,46 +2,104 @@ jQuery(document).ready(function($) {
     // Variáveis de controle de retentativa
     var maxRetries = 3;
     var retryDelay = 1000; // 1 segundo
+    var debugMode = turmasPilates.debug || false;
 
-    // Função para carregar cidades baseado no estado selecionado
-    function carregarCidades(estadoId, tentativa = 1) {
-        console.log('Carregando cidades para estadoId:', estadoId, 'Tentativa:', tentativa);
-        
+    // Função para exibir mensagens de debug
+    function debug(message) {
+        if (debugMode && console) {
+            console.log('DEBUG [Turmas Pilates]: ' + message);
+        }
+    }
+
+    // Função para obter um novo nonce via AJAX quando o atual falhar
+    function refreshNonce() {
+        debug('Solicitando um novo nonce');
         return $.ajax({
             url: turmasPilates.ajaxurl,
             type: 'POST',
             data: {
-                action: 'turmas_pilates_get_cidades',
-                estado_id: estadoId,
-                nonce: turmasPilates.nonce
+                action: 'turmas_pilates_refresh_nonce'
             },
             success: function(response) {
-                console.log('Resposta AJAX:', response);
-                if (response.success) {
-                    var $cidadeSelect = $('#turmas-cidade');
-                    $cidadeSelect.empty();
-                    $cidadeSelect.append('<option value="">Selecione a Cidade</option>');
-                    
-                    $.each(response.data, function(id, nome) {
-                        $cidadeSelect.append($('<option></option>').val(id).text(nome));
-                    });
+                if (response.success && response.data) {
+                    debug('Novo nonce recebido: ' + response.data.substr(0, 3) + '...');
+                    turmasPilates.nonce = response.data;
+                    $('#turmas-nonce').text(response.data);
+                    return response.data;
                 } else {
-                    console.error('Falha na resposta:', response.data);
-                    if (tentativa < maxRetries) {
-                        setTimeout(function() {
-                            carregarCidades(estadoId, tentativa + 1);
-                        }, retryDelay);
-                    }
+                    debug('Falha ao obter novo nonce');
+                    return null;
                 }
             },
-            error: function(xhr, status, error) {
-                console.error('Erro AJAX:', status, error, xhr.responseText);
-                if (tentativa < maxRetries) {
-                    setTimeout(function() {
-                        carregarCidades(estadoId, tentativa + 1);
-                    }, retryDelay);
-                }
+            error: function() {
+                debug('Erro ao solicitar novo nonce');
+                return null;
             }
+        });
+    }
+
+    // Função para carregar cidades baseado no estado selecionado
+    function carregarCidades(estadoId, tentativa = 1, forceNewNonce = false) {
+        debug('Carregando cidades para estadoId: ' + estadoId + ', Tentativa: ' + tentativa);
+        
+        // Se solicitado, obter novo nonce antes da requisição
+        var requestPromise = Promise.resolve();
+        if (forceNewNonce) {
+            requestPromise = refreshNonce();
+        }
+        
+        requestPromise.then(function() {
+            $.ajax({
+                url: turmasPilates.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'turmas_pilates_get_cidades',
+                    estado_id: estadoId,
+                    nonce: turmasPilates.nonce,
+                    timestamp: new Date().getTime() // Impedir cache
+                },
+                success: function(response) {
+                    debug('Resposta AJAX recebida');
+                    if (response.success) {
+                        var $cidadeSelect = $('#turmas-cidade');
+                        $cidadeSelect.empty();
+                        $cidadeSelect.append('<option value="">Selecione a Cidade</option>');
+                        
+                        $.each(response.data, function(id, nome) {
+                            $cidadeSelect.append($('<option></option>').val(id).text(nome));
+                        });
+                        
+                        debug('Cidades carregadas com sucesso: ' + Object.keys(response.data).length);
+                    } else {
+                        debug('Falha na resposta: ' + (response.data || 'Erro desconhecido'));
+                        
+                        // Verificar se falha é de nonce e tentar novamente com novo nonce
+                        if (tentativa < maxRetries) {
+                            var useNewNonce = (response.data && response.data.includes('segurança'));
+                            setTimeout(function() {
+                                carregarCidades(estadoId, tentativa + 1, useNewNonce);
+                            }, retryDelay);
+                        } else {
+                            // Última tentativa com novo nonce
+                            refreshNonce().then(function() {
+                                carregarCidades(estadoId, tentativa + 1, false);
+                            });
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    debug('Erro AJAX: ' + status + ' - ' + error);
+                    
+                    // Tentar novamente após o atraso
+                    if (tentativa < maxRetries) {
+                        setTimeout(function() {
+                            // Na última tentativa, forçar novo nonce
+                            var useNewNonce = (tentativa === maxRetries - 1);
+                            carregarCidades(estadoId, tentativa + 1, useNewNonce);
+                        }, retryDelay * tentativa); // Aumentar atraso exponencialmente
+                    }
+                }
+            });
         });
     }
 
@@ -53,6 +111,7 @@ jQuery(document).ready(function($) {
         var estadoId = $(this).val();
         if (estadoId && estadoId !== ultimoEstadoSelecionado) {
             ultimoEstadoSelecionado = estadoId;
+            $('#turmas-cidade').empty().append('<option value="">Carregando cidades...</option>');
             carregarCidades(estadoId);
         } else if (!estadoId) {
             $('#turmas-cidade').empty().append('<option value="">Selecione a Cidade</option>');
@@ -64,13 +123,16 @@ jQuery(document).ready(function($) {
     $('#turmas-cidade').on('change', function() {
         var cidadeId = $(this).val();
         if (cidadeId) {
+            $('#turmas-resultado').html('<p>Carregando turmas...</p>');
+            
             $.ajax({
                 url: turmasPilates.ajaxurl,
                 type: 'POST',
                 data: {
                     action: 'turmas_pilates_get_turmas',
                     cidade_id: cidadeId,
-                    nonce: turmasPilates.nonce
+                    nonce: turmasPilates.nonce,
+                    timestamp: new Date().getTime() // Impedir cache
                 },
                 success: function(response) {
                     if (response.success) {
@@ -226,7 +288,17 @@ jQuery(document).ready(function($) {
                         } else {
                             $container.html('<p>Nenhuma turma encontrada para esta cidade.</p>');
                         }
+                    } else {
+                        $('#turmas-resultado').html('<p>Erro ao carregar turmas. Por favor, tente novamente.</p>');
+                        
+                        // Se falha for de nonce, obter novo nonce
+                        if (response.data && response.data.includes('segurança')) {
+                            refreshNonce();
+                        }
                     }
+                },
+                error: function() {
+                    $('#turmas-resultado').html('<p>Erro de conexão. Por favor, tente novamente.</p>');
                 }
             });
         } else {

@@ -7,15 +7,8 @@ if (!defined('ABSPATH')) {
 function turmas_pilates_shortcode() {
     ob_start();
     
-    // Carregar scripts e estilos
-    wp_enqueue_style('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'css/frontend.css');
-    wp_enqueue_script('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'js/frontend.js', array('jquery'), TURMAS_PILATES_VERSION, true);
-    
-    // Localizar o script
-    wp_localize_script('turmas-pilates-frontend', 'turmasPilates', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('turmas_pilates_nonce')
-    ));
+    // Gerar um nonce fresco a cada carregamento
+    $nonce = wp_create_nonce('turmas_pilates_nonce');
     
     // Obter todos os estados que possuem turmas
     $estados_com_turmas = array();
@@ -45,6 +38,20 @@ function turmas_pilates_shortcode() {
             'hide_empty' => false,
         ));
     }
+    
+    // Carregar scripts e estilos na ordem correta
+    wp_enqueue_style('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'css/frontend.css');
+    wp_enqueue_script('turmas-pilates-frontend', TURMAS_PILATES_PLUGIN_URL . 'js/frontend.js', array('jquery'), TURMAS_PILATES_VERSION, true);
+    
+    // Localizar o script com o nonce gerado
+    wp_localize_script('turmas-pilates-frontend', 'turmasPilates', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => $nonce,
+        'version' => TURMAS_PILATES_VERSION,
+        'debug' => WP_DEBUG
+    ));
+    
+    // Output HTML
     ?>
     <div class="turmas-filtro">
         <select id="turmas-estado">
@@ -59,6 +66,13 @@ function turmas_pilates_shortcode() {
         <select id="turmas-cidade">
             <option value="">Selecione a Cidade</option>
         </select>
+        
+        <!-- Debug info (visível apenas em modo de debug) -->
+        <?php if (WP_DEBUG): ?>
+        <div class="turmas-debug-info" style="display:none;">
+            <p>Nonce: <span id="turmas-nonce"><?php echo esc_html($nonce); ?></span></p>
+        </div>
+        <?php endif; ?>
     </div>
     
     <div id="turmas-resultado"></div>
@@ -73,11 +87,11 @@ function turmas_pilates_get_cidades() {
     // Log para debug
     error_log('Requisição recebida para turmas_pilates_get_cidades');
     
-    // Verificar nonce
+    // Verificar nonce - remover mensagem de erro específica para segurança
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'turmas_pilates_nonce')) {
         error_log('Falha na verificação do nonce');
         error_log('Nonce recebido: ' . (isset($_POST['nonce']) ? $_POST['nonce'] : 'não definido'));
-        wp_send_json_error('Nonce inválido');
+        wp_send_json_error('Verificação de segurança falhou');
         return;
     }
     
@@ -116,10 +130,9 @@ add_action('wp_ajax_turmas_pilates_get_cidades', 'turmas_pilates_get_cidades');
 add_action('wp_ajax_nopriv_turmas_pilates_get_cidades', 'turmas_pilates_get_cidades');
 
 function turmas_pilates_get_turmas() {
-    // Verificar nonce manualmente
-    $nonce = isset($_POST['nonce']) ? $_POST['nonce'] : '';
-    if (!wp_verify_nonce($nonce, 'turmas_pilates_nonce')) {
-        wp_send_json_error('Nonce inválido');
+    // Verificar nonce - remover mensagem de erro específica para segurança
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'turmas_pilates_nonce')) {
+        wp_send_json_error('Verificação de segurança falhou');
         return;
     }
     
