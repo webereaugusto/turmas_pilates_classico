@@ -53,29 +53,31 @@ function turmas_pilates_shortcode() {
     
     // Output HTML
     ?>
-    <div class="turmas-filtro">
-        <select id="turmas-estado">
-            <option value="">Selecione o Estado</option>
-            <?php foreach ($estados as $estado): ?>
-                <option value="<?php echo esc_attr($estado->term_id); ?>">
-                    <?php echo esc_html($estado->name); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        
-        <select id="turmas-cidade">
-            <option value="">Selecione a Cidade</option>
-        </select>
-        
-        <!-- Debug info (visível apenas em modo de debug) -->
-        <?php if (WP_DEBUG): ?>
-        <div class="turmas-debug-info" style="display:none;">
-            <p>Nonce: <span id="turmas-nonce"><?php echo esc_html($nonce); ?></span></p>
+    <div class="turmas-pilates-container">
+        <div class="turmas-filtro">
+            <select id="turmas-estado">
+                <option value="">Selecione o Estado</option>
+                <?php foreach ($estados as $estado): ?>
+                    <option value="<?php echo esc_attr($estado->term_id); ?>">
+                        <?php echo esc_html($estado->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            
+            <select id="turmas-cidade">
+                <option value="">Selecione a Cidade</option>
+            </select>
+            
+            <!-- Debug info (visível apenas em modo de debug) -->
+            <?php if (WP_DEBUG): ?>
+            <div class="turmas-debug-info" style="display:none;">
+                <p>Nonce: <span id="turmas-nonce"><?php echo esc_html($nonce); ?></span></p>
+            </div>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
+        
+        <div id="turmas-resultado"></div>
     </div>
-    
-    <div id="turmas-resultado"></div>
     <?php
     
     return ob_get_clean();
