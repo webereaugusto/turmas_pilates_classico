@@ -1,0 +1,175 @@
+/* Estilos para o Frontend do Plugin Turmas de Pilates */
+
+/* Container principal */
+.turmas-filtro {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Campos de seleção */
+.turmas-filtro select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 220px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.07);
+}
+
+.turmas-filtro select:focus {
+    outline: none;
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* Área de resultados */
+#turmas-resultado {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Cabeçalhos das categorias */
+.turmas-categoria {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Container de categorias */
+.turmas-categoria-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Cards de turmas */
+.turma-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.turma-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.turma-card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilização diferente para cada tipo de turma */
+.turma-fds {
+    border-top: 4px solid #4caf50;
+}
+
+.turma-semana {
+    border-top: 4px solid #2196f3;
+}
+
+/* Badges de status */
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: white;
+}
+
+.status-abertas {
+    background-color: #4caf50;
+}
+
+.status-esgotadas {
+    background-color: #f44336;
+}
+
+.status-restantes {
+    background-color: #ff9800;
+}
+
+/* Contador de vagas restantes */
+.vagas-restantes-contador {
+    font-weight: bold;
+    color: #ff5722;
+    background-color: #ffebee;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 10px 0;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* Informações de local */
+.turma-location-contact {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.turma-location-contact h3 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Mensagem de carregamento */
+#turmas-resultado p {
+    font-size: 16px;
+    padding: 10px;
+    color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .turmas-filtro {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .turmas-filtro select {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .turmas-categoria-container {
+        justify-content: center;
+    }
+    
+    .turma-card {
+        width: 100%;
+        max-width: 340px;
+    }
+} 

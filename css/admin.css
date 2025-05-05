@@ -1,0 +1,189 @@
+/* Estilos para o painel administrativo do Plugin Turmas de Pilates */
+
+/* Estilos para os meta boxes */
+.turma-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.turma-item h4 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #23282d;
+}
+
+.turma-item label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.turma-item input[type="text"],
+.turma-item input[type="number"],
+.turma-item select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.07);
+}
+
+/* Botões */
+.add-turma-button,
+.remove-turma {
+    background-color: #2271b1;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-turma-button:hover {
+    background-color: #135e96;
+}
+
+.remove-turma {
+    background-color: #d63638;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.remove-turma:hover {
+    background-color: #b32d2e;
+}
+
+/* Estilo para os campos de data */
+.date-inputs-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.date-input-container {
+    position: relative;
+    flex: 1;
+    min-width: 150px;
+}
+
+.date-input-container input {
+    padding-right: 35px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.date-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+}
+
+.date-separator {
+    font-weight: bold;
+    color: #666;
+}
+
+/* Quantidade de vagas */
+.quantidade-vagas-container {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin: -10px 0 15px;
+    border-left: 4px solid #ff9800;
+}
+
+/* Seção de informações adicionais */
+.location-contact-section {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.location-contact-section h4 {
+    margin-top: 0;
+    color: #23282d;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.location-contact-section .description {
+    color: #666;
+    font-style: italic;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Estilo para página de ajuda */
+.turmas-instructions {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.instructions-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.instructions-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.instructions-section h3 {
+    color: #23282d;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.shortcode-highlight-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.shortcode-highlight {
+    display: inline-block;
+    background-color: #f0f0f1;
+    font-family: Consolas, Monaco, monospace;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px 0 0 3px;
+    font-size: 16px;
+    color: #3c434a;
+    font-weight: bold;
+    margin: 0;
+}
+
+.copy-shortcode {
+    background-color: #2271b1;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.copy-shortcode:hover {
+    background-color: #135e96;
+} 
