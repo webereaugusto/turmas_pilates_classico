@@ -38,6 +38,33 @@ jQuery(document).ready(function($) {
         });
     }
 
+    // Função para formatar datas no formato compacto (dd/mm para intermediárias, dd/mm/aaaa para última)
+    function formatarDatasCompactas(datas) {
+        if (!datas || datas.length === 0) return '';
+        
+        var datasFormatadas = [];
+        
+        // Processar todas as datas exceto a última
+        for (var i = 0; i < datas.length - 1; i++) {
+            var dataPartes = datas[i].split('/');
+            if (dataPartes.length === 3) {
+                // Formato dd/mm apenas
+                datasFormatadas.push(dataPartes[0] + '/' + dataPartes[1]);
+            } else {
+                // Se não estiver no formato esperado, usar como está
+                datasFormatadas.push(datas[i]);
+            }
+        }
+        
+        // Adicionar a última data completa (com ano)
+        if (datas.length > 0) {
+            datasFormatadas.push(datas[datas.length - 1]);
+        }
+        
+        // Juntar com " e " entre as datas
+        return datasFormatadas.join(', ').replace(/, ([^,]*)$/, ' e $1');
+    }
+
     // Função para carregar cidades baseado no estado selecionado
     function carregarCidades(estadoId, tentativa = 1, forceNewNonce = false) {
         debug('Carregando cidades para estadoId: ' + estadoId + ', Tentativa: ' + tentativa);
@@ -194,7 +221,9 @@ jQuery(document).ready(function($) {
                                         if (turma.modulo_data1) datas.push(turma.modulo_data1);
                                         if (turma.modulo_data2) datas.push(turma.modulo_data2);
                                         if (turma.modulo_data3) datas.push(turma.modulo_data3);
-                                        moduloText = datas.join(' e ');
+                                        
+                                        // Usar a nova função para formatar datas
+                                        moduloText = formatarDatasCompactas(datas);
                                     }
                                     
                                     var html = `
@@ -253,7 +282,9 @@ jQuery(document).ready(function($) {
                                         if (turma.modulo_data1) datas.push(turma.modulo_data1);
                                         if (turma.modulo_data2) datas.push(turma.modulo_data2);
                                         if (turma.modulo_data3) datas.push(turma.modulo_data3);
-                                        moduloText = datas.join(' e ');
+                                        
+                                        // Usar a nova função para formatar datas
+                                        moduloText = formatarDatasCompactas(datas);
                                     }
                                 
                                 var html = `
