@@ -353,6 +353,9 @@ function turmas_pilates_meta_box_callback($post) {
                 <label>Quantidade de Vagas Restantes:</label>
                 <input type="number" name="turmas[<?php echo $index; ?>][qtd_vagas]" value="<?php echo isset($turma['qtd_vagas']) ? esc_attr($turma['qtd_vagas']) : ''; ?>">
             </p>
+            <p>
+                <label><input type="checkbox" name="turmas[<?php echo $index; ?>][destaque]" value="1" <?php checked(isset($turma['destaque']) && $turma['destaque']); ?>> Destaque?</label>
+            </p>
             <button type="button" class="remove-turma">Remover Turma</button>
         </div>
         <?php endforeach; ?>
@@ -425,6 +428,9 @@ function turmas_pilates_meta_box_callback($post) {
                     <p class="quantidade-vagas-container" style="display:none;">
                         <label>Quantidade de Vagas Restantes:</label>
                         <input type="number" name="turmas[${index}][qtd_vagas]">
+                    </p>
+                    <p>
+                        <label><input type="checkbox" name="turmas[${index}][destaque]" value="1"> Destaque?</label>
                     </p>
                     <button type="button" class="remove-turma">Remover Turma</button>
                 </div>
@@ -512,6 +518,9 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
                 <label>Quantidade de Vagas Restantes:</label>
                 <input type="number" name="turmas_meio_semana[<?php echo $index; ?>][qtd_vagas]" value="<?php echo isset($turma['qtd_vagas']) ? esc_attr($turma['qtd_vagas']) : ''; ?>">
             </p>
+            <p>
+                <label><input type="checkbox" name="turmas_meio_semana[<?php echo $index; ?>][destaque]" value="1" <?php checked(isset($turma['destaque']) && $turma['destaque']); ?>> Destaque?</label>
+            </p>
             <button type="button" class="remove-turma">Remover Turma</button>
         </div>
         <?php endforeach; ?>
@@ -585,6 +594,9 @@ function turmas_pilates_meio_semana_meta_box_callback($post) {
                         <label>Quantidade de Vagas Restantes:</label>
                         <input type="number" name="turmas_meio_semana[${index}][qtd_vagas]">
                     </p>
+                    <p>
+                        <label><input type="checkbox" name="turmas_meio_semana[${index}][destaque]" value="1"> Destaque?</label>
+                    </p>
                     <button type="button" class="remove-turma">Remover Turma</button>
                 </div>
             `;
@@ -649,7 +661,8 @@ function turmas_pilates_save_meta_box($post_id) {
                     'modulo_data2' => isset($turma['modulo_data2']) ? sanitize_text_field($turma['modulo_data2']) : '',
                     'modulo_data3' => isset($turma['modulo_data3']) ? sanitize_text_field($turma['modulo_data3']) : '',
                     'status' => isset($turma['status']) ? sanitize_text_field($turma['status']) : 'abertas',
-                    'qtd_vagas' => $qtd_vagas
+                    'qtd_vagas' => $qtd_vagas,
+                    'destaque' => isset($turma['destaque']) && $turma['destaque']
                 );
             }
             
@@ -683,7 +696,8 @@ function turmas_pilates_save_meta_box($post_id) {
                     'modulo_data2' => isset($turma['modulo_data2']) ? sanitize_text_field($turma['modulo_data2']) : '',
                     'modulo_data3' => isset($turma['modulo_data3']) ? sanitize_text_field($turma['modulo_data3']) : '',
                     'status' => isset($turma['status']) ? sanitize_text_field($turma['status']) : 'abertas',
-                    'qtd_vagas' => $qtd_vagas
+                    'qtd_vagas' => $qtd_vagas,
+                    'destaque' => isset($turma['destaque']) && $turma['destaque']
                 );
             }
             

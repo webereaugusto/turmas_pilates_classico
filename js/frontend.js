@@ -191,6 +191,28 @@ jQuery(document).ready(function($) {
                                        (turmas_meio_semana && turmas_meio_semana.length > 0);
                         
                         if (temTurmas) {
+                            // Ordenar turmas: destaque primeiro, depois ordem natural
+                            function naturalSortTurmas(a, b) {
+                                // Destaque primeiro
+                                if (a.destaque && !b.destaque) return -1;
+                                if (!a.destaque && b.destaque) return 1;
+                                // Extrai número inicial, se houver, para comparação numérica
+                                var numA = (a.numero + '').match(/^\d+/);
+                                var numB = (b.numero + '').match(/^\d+/);
+                                if (numA && numB) {
+                                    var diff = parseInt(numA[0], 10) - parseInt(numB[0], 10);
+                                    if (diff !== 0) return diff;
+                                } else if (numA) {
+                                    return -1;
+                                } else if (numB) {
+                                    return 1;
+                                }
+                                // Se números iguais ou não encontrados, comparar como string
+                                return (a.numero + '').localeCompare(b.numero + '', undefined, { numeric: true, sensitivity: 'base' });
+                            }
+                            turmas_final_semana.sort(naturalSortTurmas);
+                            turmas_meio_semana.sort(naturalSortTurmas);
+                            
                             // Obter o nome da cidade e estado
                             var cidadeNome = $('#turmas-cidade option:selected').text();
                             var estadoNome = $('#turmas-estado option:selected').text();
@@ -246,7 +268,7 @@ jQuery(document).ready(function($) {
                                     
                                     var infoHtml = `
                                         <div class="turma-location-contact">
-                                            <h3>Informações sobre o local do curso</h3>
+                                            <h3>Informações sobre o curso</h3>
                                             <div>${infoText}</div>
                                         </div>
                                     `;
@@ -307,7 +329,7 @@ jQuery(document).ready(function($) {
                                     
                                     var infoHtml = `
                                         <div class="turma-location-contact">
-                                            <h3>Informações sobre o local do curso</h3>
+                                            <h3>Informações sobre o curso</h3>
                                             <div>${infoText}</div>
                                         </div>
                                     `;
