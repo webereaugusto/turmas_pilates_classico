@@ -232,9 +232,6 @@ jQuery(document).ready(function($) {
                                     
                                     // Constrói a exibição de quantidade de vagas restantes
                                     var qtdVagas = '';
-                                    if (turma.status === 'restantes' && turma.qtd_vagas) {
-                                        qtdVagas = `<p class="vagas-restantes-contador">RESTAM POUCAS VAGAS!</p>`;
-                                    }
                                     
                                     // Formatar datas dos módulos
                                     var moduloText = '';
@@ -293,9 +290,6 @@ jQuery(document).ready(function($) {
                                     
                                     // Constrói a exibição de quantidade de vagas restantes
                                     var qtdVagas = '';
-                                    if (turma.status === 'restantes' && turma.qtd_vagas) {
-                                        qtdVagas = `<p class="vagas-restantes-contador">RESTAM POUCAS VAGAS!</p>`;
-                                    }
                                     
                                     // Formatar datas dos módulos
                                     var moduloText = '';
